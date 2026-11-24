@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ student.first_name }} {{ student.last_name }}{% endblock %}
+
+{% block content %}
+<a href="{% url 'student_list' %}" class="back">← Back to students</a>
+
+<div class="card hero">
+  <div class="avatar large">{{ student.first_name|slice:":1" }}{{ student.last_name|slice:":1" }}</div>
+  <div>
+    <h1>{{ student.first_name }} {{ student.middle_name }} {{ student.last_name }}</h1>
+    <p class="subtitle" style="margin: 0 0 8px;">{{ student.student_id }} · {{ student.course }}</p>
+    <span class="badge">{{ student.status }}</span>
+    <a href="{% url 'student_edit' student.pk %}" class="btn-add" style="margin-left: 8px;">Edit</a>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card">
+    <h3>Personal Info</h3>
+    <div class="field"><div class="label">Birth Date</div><div class="value">{{ student.birth_date|default:"N/A" }}</div></div>
+    <div class="field"><div class="label">Gender</div><div class="value">{{ student.gender|default:"N/A" }}</div></div>
+    <div class="field"><div class="label">Email</div><div class="value">{{ student.email|default:"N/A" }}</div></div>
+    <div class="field"><div class="label">Contact Number</div><div class="value">{{ student.contact_number|default:"N/A" }}</div></div>
+    <div class="field"><div class="label">Address</div><div class="value">{{ student.address|default:"N/A" }}</div></div>
+  </div>
+
+  <div class="card">
+    <h3>Background Info</h3>
+    <div class="field"><div class="label">Guardian</div><div class="value">{{ student.guardian_name|default:"N/A" }}</div></div>
+    <div class="field"><div class="label">Guardian Contact</div><div class="value">{{ student.guardian_contact|default:"N/A" }}</div></div>
+    <div class="field"><div class="label">Previous School</div><div class="value">{{ student.previous_school|default:"N/A" }}</div></div>
+    <div class="field"><div class="label">Year Graduated</div><div class="value">{{ student.year_graduated|default:"N/A" }}</div></div>
+  </div>
+
+  <div class="card">
+    <h3>Academic Info</h3>
+    <div class="field"><div class="label">Course</div><div class="value">{{ student.course }}</div></div>
+    <div class="field"><div class="label">Year Level</div><div class="value">{{ student.year_level }}</div></div>
+    <div class="field"><div class="label">Section</div><div class="value">{{ student.section|default:"N/A" }}</div></div>
+    <div class="field"><div class="label">Status</div><div class="value">{{ student.status }}</div></div>
+  </div>
+</div>
+{% endblock %}

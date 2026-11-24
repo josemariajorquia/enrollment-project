@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Student List{% endblock %}
+
+{% block content %}
+<div style="display:flex; justify-content:space-between; align-items:center;">
+  <div>
+    <h1>Students</h1>
+    <p class="subtitle">{{ students|length }} students in this class</p>
+  </div>
+  <a href="{% url 'student_add' %}" class="btn-add">+ Add Student</a>
+</div>
+
+<input type="text" id="search" class="search" placeholder="Search by name or course...">
+
+<div class="card" id="student-list">
+  {% for s in students %}
+  <a href="{% url 'student_profile' s.pk %}" class="student-row">
+    <div class="avatar">{{ s.first_name|slice:":1" }}{{ s.last_name|slice:":1" }}</div>
+    <div class="student-info">
+      <div class="student-name">{{ s.last_name }}, {{ s.first_name }}</div>
+      <div class="student-meta">{{ s.student_id }} · {{ s.course }} · Year {{ s.year_level }}</div>
+    </div>
+    <span class="badge">{{ s.status }}</span>
+    <span class="arrow">›</span>
+  </a>
+  {% empty %}
+  <p class="student-meta">No students found.</p>
+  {% endfor %}
+</div>
+
+<script>
+  document.getElementById('search').addEventListener('input', function () {
+    const q = this.value.toLowerCase();
+    document.querySelectorAll('.student-row').forEach(function (row) {
+      row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none';
+    });
+  });
+</script>
+{% endblock %}

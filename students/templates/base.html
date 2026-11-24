@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Enrollment System{% endblock %}</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --accent: #d62839;
+      --accent-soft: #fdecee;
+      --bg: #f7f5f3;
+      --card: #ffffff;
+      --text: #2b2b2b;
+      --muted: #8a8a8a;
+      --line: #efebe8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+
+
+    .topbar { background: var(--card); border-bottom: 1px solid var(--line); }
+    .topbar .container {
+      display: flex; justify-content: space-between; align-items: center;
+      height: 64px;
+    }
+    .brand { font-weight: 600; letter-spacing: .3px; }
+    .brand span { color: var(--accent); }
+    .role { font-size: 13px; color: var(--muted); }
+
+    main { padding: 40px 24px 64px; }
+    h1 { font-size: 26px; font-weight: 600; }
+    .subtitle { color: var(--muted); font-size: 14px; margin: 4px 0 24px; }
+
+
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,.04);
+    }
+
+  
+    .avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--accent-soft); color: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 600; font-size: 15px; flex-shrink: 0;
+    }
+    .avatar.large { width: 84px; height: 84px; font-size: 30px; }
+
+
+    .badge {
+      display: inline-block; padding: 4px 12px; border-radius: 999px;
+      font-size: 12px; font-weight: 500;
+      background: var(--accent-soft); color: var(--accent);
+    }
+
+   
+    .search {
+      width: 100%; padding: 14px 18px; margin-bottom: 20px;
+      border: 1px solid var(--line); border-radius: 12px;
+      font-family: inherit; font-size: 14px; background: var(--card);
+      outline: none;
+    }
+    .search:focus { border-color: var(--accent); }
+    .student-row {
+      display: flex; align-items: center; gap: 16px;
+      padding: 16px 20px; border-radius: 12px;
+      transition: background .15s;
+    }
+    .student-row:hover { background: var(--bg); }
+    .student-row + .student-row { border-top: 1px solid var(--line); }
+    .student-info { flex: 1; }
+    .student-name { font-weight: 500; }
+    .student-meta { font-size: 13px; color: var(--muted); }
+    .arrow { color: var(--muted); font-size: 18px; }
+
+  
+    .back { display: inline-block; font-size: 14px; color: var(--muted); margin-bottom: 20px; }
+    .back:hover { color: var(--accent); }
+    .hero { display: flex; align-items: center; gap: 24px; margin-bottom: 24px; }
+    .hero h1 { margin-bottom: 4px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+    .card h3 {
+      font-size: 13px; text-transform: uppercase; letter-spacing: 1px;
+      color: var(--accent); margin-bottom: 16px;
+    }
+    .field { padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .field:last-child { border-bottom: none; }
+    .label { font-size: 12px; color: var(--muted); }
+    .value { font-size: 15px; }
+    .btn-add {
+        background: var(--accent); color: #fff; padding: 10px 20px;
+        border-radius: 10px; font-size: 14px; margin-bottom: 24px;
+}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container">
+      <a href="{% url 'student_list' %}" class="brand">Enroll<span>ment</span></a>
+      <span class="role">Admin Panel</span>
+    </div>
+  </header>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>
